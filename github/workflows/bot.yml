@@ -1,0 +1,20 @@
+name: Auto Referral Bot
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'  # প্রতি ৪ ঘণ্টায় রান করবে
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run bot
+        run: python main.py
